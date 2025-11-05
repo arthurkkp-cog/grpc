@@ -12,20 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM grpc/clang:latest
+FROM silkeh/clang:19-bookworm
 
-RUN apt-get update && apt-get install -y \
-  autoconf \
-  libtool \
-  libgtest-dev \
-  && apt-get clean
+# Install prerequisites for the scan-build script
+RUN apt-get update && apt-get install -y python3 jq git && apt-get clean
 
-RUN git clone --recursive https://github.com/grpc/grpc.git
+# otherwise scan-build will report missing <gtest/gtest.h> header
+RUN apt-get update && apt-get install -y libgtest-dev && apt-get clean
 
-EXPOSE 8181
+ADD scan_build_all_the_things.sh /
 
-CMD \
-  (cd grpc ; git pull) && \
-  (cd grpc ; git submodule update --init --recursive) && \
-  llvm/tools/clang/tools/scan-build/scan-build -o /tmp/grpc --use-analyzer=/usr/local/bin/clang make -C grpc buildtests && \
-  llvm/tools/clang/tools/scan-view/scan-view /tmp/grpc/`ls /tmp/grpc` --host 0.0.0.0 --no-browser --allow-all-hosts
+# When running locally, we'll be impersonating the current user, so we need
+# to make the script runnable by everyone.
+RUN chmod a+rx /scan_build_all_the_things.sh
+
+CMD ["echo 'Run with tools/distrib/scan_build_code.sh'"]
