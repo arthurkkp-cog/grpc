@@ -26,6 +26,7 @@
 #include <memory>
 #include <utility>
 
+#include "src/core/lib/security/authorization/evaluate_args.h"
 #include "src/core/lib/security/authorization/stdout_logger.h"
 #include "src/core/util/grpc_check.h"
 #include "src/core/util/sync.h"
@@ -85,6 +86,14 @@ void AuditLoggerRegistry::TestOnlyResetRegistry() {
   MutexLock lock(mu);
   delete registry;
   registry = new AuditLoggerRegistry();
+}
+
+std::optional<absl::string_view> AuditContext::GetHeaderValue(
+    absl::string_view key, std::string* concatenated_value) const {
+  if (eval_args_ == nullptr) {
+    return std::nullopt;
+  }
+  return eval_args_->GetHeaderValue(key, concatenated_value);
 }
 
 void RegisterAuditLoggerFactory(std::unique_ptr<AuditLoggerFactory> factory) {

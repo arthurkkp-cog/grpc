@@ -29,6 +29,9 @@
 #include "absl/strings/string_view.h"
 
 namespace grpc_core {
+
+class EvaluateArgs;
+
 namespace experimental {
 
 // The class containing the context for an audited RPC.
@@ -36,18 +39,44 @@ class AuditContext {
  public:
   AuditContext(absl::string_view rpc_method, absl::string_view principal,
                absl::string_view policy_name, absl::string_view matched_rule,
-               bool authorized)
+               bool authorized, absl::string_view client_ip, int client_port,
+               absl::string_view certificate_subject,
+               absl::string_view certificate_common_name,
+               std::vector<absl::string_view> certificate_uri_sans,
+               std::vector<absl::string_view> certificate_dns_sans,
+               const EvaluateArgs* eval_args)
       : rpc_method_(rpc_method),
         principal_(principal),
         policy_name_(policy_name),
         matched_rule_(matched_rule),
-        authorized_(authorized) {}
+        authorized_(authorized),
+        client_ip_(client_ip),
+        client_port_(client_port),
+        certificate_subject_(certificate_subject),
+        certificate_common_name_(certificate_common_name),
+        certificate_uri_sans_(std::move(certificate_uri_sans)),
+        certificate_dns_sans_(std::move(certificate_dns_sans)),
+        eval_args_(eval_args) {}
 
   absl::string_view rpc_method() const { return rpc_method_; }
   absl::string_view principal() const { return principal_; }
   absl::string_view policy_name() const { return policy_name_; }
   absl::string_view matched_rule() const { return matched_rule_; }
   bool authorized() const { return authorized_; }
+  absl::string_view client_ip() const { return client_ip_; }
+  int client_port() const { return client_port_; }
+  absl::string_view certificate_subject() const { return certificate_subject_; }
+  absl::string_view certificate_common_name() const {
+    return certificate_common_name_;
+  }
+  std::vector<absl::string_view> certificate_uri_sans() const {
+    return certificate_uri_sans_;
+  }
+  std::vector<absl::string_view> certificate_dns_sans() const {
+    return certificate_dns_sans_;
+  }
+  std::optional<absl::string_view> GetHeaderValue(
+      absl::string_view key, std::string* concatenated_value) const;
 
  private:
   absl::string_view rpc_method_;
@@ -55,6 +84,13 @@ class AuditContext {
   absl::string_view policy_name_;
   absl::string_view matched_rule_;
   bool authorized_;
+  absl::string_view client_ip_;
+  int client_port_;
+  absl::string_view certificate_subject_;
+  absl::string_view certificate_common_name_;
+  std::vector<absl::string_view> certificate_uri_sans_;
+  std::vector<absl::string_view> certificate_dns_sans_;
+  const EvaluateArgs* eval_args_;
 };
 
 // This base class for audit logger implementations.
