@@ -181,21 +181,21 @@ if EXTRA_ENV_COMPILE_ARGS is None:
     EXTRA_ENV_COMPILE_ARGS = ""
     if "win32" in sys.platform:
         # MSVC by defaults uses C++14 and C89 so both needs to be configured.
-        EXTRA_ENV_COMPILE_ARGS += " /std:c++17"
+        EXTRA_ENV_COMPILE_ARGS += " /std:c++23"
         EXTRA_ENV_COMPILE_ARGS += " /std:c11"
         # We need to statically link the C++ Runtime, only the C runtime is
         # available dynamically
         EXTRA_ENV_COMPILE_ARGS += " /MT"
     elif "linux" in sys.platform:
-        # GCC by defaults uses C17 so only C++17 needs to be specified.
-        EXTRA_ENV_COMPILE_ARGS += " -std=c++17"
+        # GCC by defaults uses C17 so only C++23 needs to be specified.
+        EXTRA_ENV_COMPILE_ARGS += " -std=c++23"
         EXTRA_ENV_COMPILE_ARGS += " -fno-wrapv -frtti"
         # Reduce the optimization level from O3 (in many cases) to O1 to
         # workaround gcc misalignment bug with MOVAPS (internal b/329134877)
         EXTRA_ENV_COMPILE_ARGS += " -O1"
     elif "darwin" in sys.platform:
-        # AppleClang by defaults uses C17 so only C++17 needs to be specified.
-        EXTRA_ENV_COMPILE_ARGS += " -std=c++17"
+        # AppleClang by defaults uses C17 so only C++23 needs to be specified.
+        EXTRA_ENV_COMPILE_ARGS += " -std=c++23"
         EXTRA_ENV_COMPILE_ARGS += " -fno-wrapv -frtti"
         EXTRA_ENV_COMPILE_ARGS += " -stdlib=libc++ -DHAVE_UNISTD_H"
 if EXTRA_ENV_LINK_ARGS is None:
