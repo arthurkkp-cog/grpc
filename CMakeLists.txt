@@ -295,9 +295,9 @@ if(WIN32)
 endif()
 
 if (APPLE AND NOT DEFINED CMAKE_CXX_STANDARD)
-  # AppleClang defaults to C++98, so we bump it to C++17.
-  message("CMAKE_CXX_STANDARD was undefined, defaulting to C++17.")
-  set(CMAKE_CXX_STANDARD 17)
+  # AppleClang defaults to C++98, so we bump it to C++23.
+  message("CMAKE_CXX_STANDARD was undefined, defaulting to C++23.")
+  set(CMAKE_CXX_STANDARD 23)
 endif ()
 
 if (NOT DEFINED CMAKE_POSITION_INDEPENDENT_CODE)
