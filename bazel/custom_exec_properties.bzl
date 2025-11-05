@@ -13,9 +13,10 @@
 # limitations under the License.
 
 """
-Reimports constants from the grpc_custom_exec_properties repo.
+Defines constants for custom execution properties.
 """
 
-load("@grpc_custom_exec_properties//:constants.bzl", _LARGE_MACHINE = "LARGE_MACHINE")
-
-LARGE_MACHINE = _LARGE_MACHINE
+LARGE_MACHINE = {
+    "labels.os": "ubuntu",
+    "labels.machine_size": "large",
+}
