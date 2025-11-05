@@ -99,7 +99,10 @@ AuthorizationEngine::Decision GrpcAuthorizationEngine::Evaluate(
     for (auto& logger : audit_loggers_) {
       logger->Log(AuditContext(args.GetPath(), args.GetSpiffeId(), name_,
                                decision.matching_policy_name,
-                               decision.type == Decision::Type::kAllow));
+                               decision.type == Decision::Type::kAllow,
+                               args.GetPeerAddressString(), args.GetPeerPort(),
+                               args.GetSubject(), args.GetCommonName(),
+                               args.GetUriSans(), args.GetDnsSans(), &args));
     }
   }
   return decision;
