@@ -6,7 +6,7 @@ This document outlines conventions and best practices for AI-assisted developmen
 *   Prefer gRPC types before absl.
 *   Prefer std types when available, use absl types when not
 *   Prefer `std::optional` over `absl::optional`
-*   gRPC uses C++17, so we can't use C++20 onwards types.
+*   gRPC uses C++20, which provides access to modern C++ features.
 *   The Python implementation cannot depend on the protobuf library, so any shared libraries must expose a C-style API that does not rely on C++ protobuf types.
 
 ## Code Style & Conventions

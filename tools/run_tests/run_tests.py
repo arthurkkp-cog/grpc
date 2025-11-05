@@ -306,7 +306,7 @@ class CLanguage(object):
 
             self._cmake_configure_extra_args = list(
                 self.args.cmake_configure_extra_args
-            ) + ["-DCMAKE_CXX_STANDARD=17"]
+            ) + ["-DCMAKE_CXX_STANDARD=20"]
             self._cmake_generator_windows = cmake_generator
             # required to pass as cmake "-A" configuration for VS builds (but not for Ninja)
             self._cmake_architecture_windows = (
@@ -560,17 +560,17 @@ class CLanguage(object):
             _check_compiler(compiler, ["default", "cmake"])
 
         if compiler == "default" or compiler == "cmake":
-            return ("debian11", ["-DCMAKE_CXX_STANDARD=17"])
+            return ("debian11", ["-DCMAKE_CXX_STANDARD=20"])
         elif compiler == "gcc8":
-            return ("gcc_8", ["-DCMAKE_CXX_STANDARD=17"])
+            return ("gcc_8", ["-DCMAKE_CXX_STANDARD=20"])
         elif compiler == "gcc10.2":
-            return ("debian11", ["-DCMAKE_CXX_STANDARD=17"])
+            return ("debian11", ["-DCMAKE_CXX_STANDARD=20"])
         elif compiler == "gcc10.2_openssl102":
             return (
                 "debian11_openssl102",
                 [
                     "-DgRPC_SSL_PROVIDER=package",
-                    "-DCMAKE_CXX_STANDARD=17",
+                    "-DCMAKE_CXX_STANDARD=20",
                 ],
             )
         elif compiler == "gcc10.2_openssl111":
@@ -578,7 +578,7 @@ class CLanguage(object):
                 "debian11_openssl111",
                 [
                     "-DgRPC_SSL_PROVIDER=package",
-                    "-DCMAKE_CXX_STANDARD=17",
+                    "-DCMAKE_CXX_STANDARD=20",
                 ],
             )
         elif compiler == "gcc12_openssl309":
@@ -586,19 +586,19 @@ class CLanguage(object):
                 "debian12_openssl309",
                 [
                     "-DgRPC_SSL_PROVIDER=package",
-                    "-DCMAKE_CXX_STANDARD=17",
+                    "-DCMAKE_CXX_STANDARD=20",
                 ],
             )
         elif compiler == "gcc14":
             return ("gcc_14", ["-DCMAKE_CXX_STANDARD=20"])
         elif compiler == "gcc_musl":
-            return ("alpine", ["-DCMAKE_CXX_STANDARD=17"])
+            return ("alpine", ["-DCMAKE_CXX_STANDARD=20"])
         elif compiler == "clang11":
             return (
                 "clang_11",
                 self._clang_cmake_configure_extra_args()
                 + [
-                    "-DCMAKE_CXX_STANDARD=17",
+                    "-DCMAKE_CXX_STANDARD=20",
                 ],
             )
         elif compiler == "clang19":
@@ -606,7 +606,7 @@ class CLanguage(object):
                 "clang_19",
                 self._clang_cmake_configure_extra_args()
                 + [
-                    "-DCMAKE_CXX_STANDARD=17",
+                    "-DCMAKE_CXX_STANDARD=20",
                 ],
             )
         else:

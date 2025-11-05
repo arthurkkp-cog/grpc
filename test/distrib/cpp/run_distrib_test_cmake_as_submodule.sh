@@ -25,7 +25,7 @@ cd examples/cpp/helloworld
 mkdir -p cmake/build
 cd cmake/build
 cmake \
-  -DCMAKE_CXX_STANDARD=17 \
+  -DCMAKE_CXX_STANDARD=20 \
   -DGRPC_AS_SUBMODULE=ON \
   -Dprotobuf_INSTALL=OFF \
   -Dutf8_range_ENABLE_INSTALL=OFF \

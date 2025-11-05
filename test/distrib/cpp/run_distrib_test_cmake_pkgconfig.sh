@@ -85,7 +85,7 @@ mkdir -p "cmake/build"
 pushd "cmake/build"
 cmake \
   -DCMAKE_BUILD_TYPE=Release \
-  -DCMAKE_CXX_STANDARD=17 \
+  -DCMAKE_CXX_STANDARD=20 \
   -DCMAKE_INSTALL_PREFIX=/usr/local/grpc \
   -DgRPC_INSTALL=ON \
   -DgRPC_BUILD_TESTS=OFF \
