@@ -26,6 +26,7 @@
 #include <memory>
 #include <utility>
 
+#include "src/core/lib/security/authorization/evaluate_args.h"
 #include "src/core/lib/security/authorization/stdout_logger.h"
 #include "src/core/util/grpc_check.h"
 #include "src/core/util/sync.h"
@@ -36,6 +37,39 @@
 
 namespace grpc_core {
 namespace experimental {
+
+absl::string_view AuditContext::client_ip() const {
+  return evaluate_args_ ? evaluate_args_->GetPeerAddressString() : "";
+}
+
+int AuditContext::client_port() const {
+  return evaluate_args_ ? evaluate_args_->GetPeerPort() : 0;
+}
+
+absl::string_view AuditContext::certificate_subject() const {
+  return evaluate_args_ ? evaluate_args_->GetSubject() : "";
+}
+
+absl::string_view AuditContext::certificate_common_name() const {
+  return evaluate_args_ ? evaluate_args_->GetCommonName() : "";
+}
+
+std::vector<absl::string_view> AuditContext::certificate_uri_sans() const {
+  return evaluate_args_ ? evaluate_args_->GetUriSans()
+                        : std::vector<absl::string_view>{};
+}
+
+std::vector<absl::string_view> AuditContext::certificate_dns_sans() const {
+  return evaluate_args_ ? evaluate_args_->GetDnsSans()
+                        : std::vector<absl::string_view>{};
+}
+
+std::optional<absl::string_view> AuditContext::GetHeaderValue(
+    absl::string_view key, std::string* concatenated_value) const {
+  return evaluate_args_
+             ? evaluate_args_->GetHeaderValue(key, concatenated_value)
+             : std::nullopt;
+}
 
 Mutex* AuditLoggerRegistry::mu = new Mutex();
 
