@@ -147,7 +147,7 @@
       'ALWAYS_SEARCH_USER_PATHS' => 'NO',
       'GCC_PREPROCESSOR_DEFINITIONS' => '"$(inherited)" "COCOAPODS=1"',
       'CLANG_WARN_STRICT_PROTOTYPES' => 'NO',
-      'CLANG_CXX_LANGUAGE_STANDARD' => 'c++17',
+      'CLANG_CXX_LANGUAGE_STANDARD' => 'c++23',
     }
 
     s.default_subspecs = 'Interface', 'Implementation'

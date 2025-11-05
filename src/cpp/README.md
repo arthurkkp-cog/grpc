@@ -91,14 +91,14 @@ can be used for targeting the Android platform.
 To build gRPC C++ from source, follow the [BUILDING guide](../../BUILDING.md).
 
 To ensure all libraries in your CMake project compile with the same C++ version
-(e.g., C++17), explicitly specify the standard:
+(e.g., C++23), explicitly specify the standard:
 
 ```cmake
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 ```
 
-This configuration enforces the use of C++17 for all targets and avoids potential
+This configuration enforces the use of C++23 for all targets and avoids potential
 inconsistencies or errors due to different C++ versions being used.
 
 ### find_package
