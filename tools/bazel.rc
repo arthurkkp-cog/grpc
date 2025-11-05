@@ -15,14 +15,14 @@ common --incompatible_disallow_struct_provider_syntax=false
 # for platform-appropriate cxxopts
 common --enable_platform_specific_config
 
-build:windows --cxxopt='/std:c++17'
-build:windows --host_cxxopt='/std:c++17'
-build:linux   --cxxopt='-std=c++17'
-build:linux   --host_cxxopt='-std=c++17'
-build:macos   --cxxopt='-std=c++17'
-build:macos   --host_cxxopt='-std=c++17'
-build:freebsd   --cxxopt='-std=c++17'
-build:freebsd   --host_cxxopt='-std=c++17'
+build:windows --cxxopt='/std:c++20'
+build:windows --host_cxxopt='/std:c++20'
+build:linux   --cxxopt='-std=c++20'
+build:linux   --host_cxxopt='-std=c++20'
+build:macos   --cxxopt='-std=c++20'
+build:macos   --host_cxxopt='-std=c++20'
+build:freebsd   --cxxopt='-std=c++20'
+build:freebsd   --host_cxxopt='-std=c++20'
 
 # Don't trigger --config=<host platform> when cross-compiling.
 build:android --noenable_platform_specific_config

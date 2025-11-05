@@ -26,7 +26,7 @@ GRPC_CPP_DISTRIBTEST_BUILD_COMPILER_JOBS=${GRPC_CPP_DISTRIBTEST_BUILD_COMPILER_J
 # Install absl
 mkdir -p "third_party/abseil-cpp/cmake/build"
 pushd "third_party/abseil-cpp/cmake/build"
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=17 -DCMAKE_POSITION_INDEPENDENT_CODE=TRUE ../..
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=20 -DCMAKE_POSITION_INDEPENDENT_CODE=TRUE ../..
 make "-j${GRPC_CPP_DISTRIBTEST_BUILD_COMPILER_JOBS}" install
 popd
 
@@ -50,7 +50,7 @@ popd
 # Install re2
 mkdir -p "third_party/re2/cmake/build"
 pushd "third_party/re2/cmake/build"
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=17 -DCMAKE_POSITION_INDEPENDENT_CODE=TRUE ../..
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=20 -DCMAKE_POSITION_INDEPENDENT_CODE=TRUE ../..
 make "-j${GRPC_CPP_DISTRIBTEST_BUILD_COMPILER_JOBS}" install
 popd
 
@@ -73,7 +73,7 @@ mkdir -p "cmake/build"
 pushd "cmake/build"
 cmake \
   -DCMAKE_BUILD_TYPE=Release \
-  -DCMAKE_CXX_STANDARD=17 \
+  -DCMAKE_CXX_STANDARD=20 \
   -DgRPC_INSTALL=ON \
   -DgRPC_BUILD_TESTS=OFF \
   -DgRPC_CARES_PROVIDER=package \
@@ -89,6 +89,6 @@ popd
 # Build helloworld example using cmake
 mkdir -p "examples/cpp/helloworld/cmake/build"
 pushd "examples/cpp/helloworld/cmake/build"
-cmake -DCMAKE_CXX_STANDARD=17 ../..
+cmake -DCMAKE_CXX_STANDARD=20 ../..
 make "-j${GRPC_CPP_DISTRIBTEST_BUILD_COMPILER_JOBS}"
 popd

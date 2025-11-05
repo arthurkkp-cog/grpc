@@ -393,9 +393,9 @@
   endif()
 
   if (APPLE AND NOT DEFINED CMAKE_CXX_STANDARD)
-    # AppleClang defaults to C++98, so we bump it to C++17.
-    message("CMAKE_CXX_STANDARD was undefined, defaulting to C++17.")
-    set(CMAKE_CXX_STANDARD 17)
+    # AppleClang defaults to C++98, so we bump it to C++20.
+    message("CMAKE_CXX_STANDARD was undefined, defaulting to C++20.")
+    set(CMAKE_CXX_STANDARD 20)
   endif ()
 
   ## Some libraries are shared even with BUILD_SHARED_LIBRARIES=OFF
@@ -853,7 +853,7 @@
   % endif
   )
 
-  target_compile_features(${lib.name} PUBLIC cxx_std_17)
+  target_compile_features(${lib.name} PUBLIC cxx_std_20)
 
   set_target_properties(${lib.name} PROPERTIES
   % if lib.language == 'c++':
@@ -996,7 +996,7 @@
     endif()
   endif()
   % endif
-  target_compile_features(${tgt.name} PUBLIC cxx_std_17)
+  target_compile_features(${tgt.name} PUBLIC cxx_std_20)
   target_include_directories(${tgt.name}
     PRIVATE
       <%text>${CMAKE_CURRENT_SOURCE_DIR}</%text>

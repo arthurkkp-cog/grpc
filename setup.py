@@ -264,20 +264,20 @@ if EXTRA_ENV_COMPILE_ARGS is None:
     EXTRA_ENV_COMPILE_ARGS = ""
     if "win32" in sys.platform:
         # MSVC by defaults uses C++14 and C89 so both needs to be configured.
-        EXTRA_ENV_COMPILE_ARGS += " /std:c++17"
+        EXTRA_ENV_COMPILE_ARGS += " /std:c++20"
         EXTRA_ENV_COMPILE_ARGS += " /std:c11"
         # We need to statically link the C++ Runtime, only the C runtime is
         # available dynamically
         EXTRA_ENV_COMPILE_ARGS += " /MT"
     elif "linux" in sys.platform:
-        # GCC by defaults uses C17 so only C++17 needs to be specified.
-        EXTRA_ENV_COMPILE_ARGS += " -std=c++17"
+        # GCC by defaults uses C17 so only C++20 needs to be specified.
+        EXTRA_ENV_COMPILE_ARGS += " -std=c++20"
         EXTRA_ENV_COMPILE_ARGS += (
             " -fvisibility=hidden -fno-wrapv -fno-exceptions"
         )
     elif "darwin" in sys.platform:
-        # AppleClang by defaults uses C17 so only C++17 needs to be specified.
-        EXTRA_ENV_COMPILE_ARGS += " -std=c++17"
+        # AppleClang by defaults uses C17 so only C++20 needs to be specified.
+        EXTRA_ENV_COMPILE_ARGS += " -std=c++20"
         EXTRA_ENV_COMPILE_ARGS += (
             " -stdlib=libc++ -fvisibility=hidden -fno-wrapv -fno-exceptions"
             " -DHAVE_UNISTD_H"
