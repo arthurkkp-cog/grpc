@@ -22,6 +22,7 @@
 
 #include "src/core/lib/security/authorization/audit_logging.h"
 #include "src/core/lib/security/authorization/authorization_engine.h"
+#include "src/core/lib/security/authorization/evaluate_args.h"
 #include "src/core/util/grpc_check.h"
 
 namespace grpc_core {
@@ -99,7 +100,7 @@ AuthorizationEngine::Decision GrpcAuthorizationEngine::Evaluate(
     for (auto& logger : audit_loggers_) {
       logger->Log(AuditContext(args.GetPath(), args.GetSpiffeId(), name_,
                                decision.matching_policy_name,
-                               decision.type == Decision::Type::kAllow));
+                               decision.type == Decision::Type::kAllow, &args));
     }
   }
   return decision;

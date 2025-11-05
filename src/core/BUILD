@@ -4420,6 +4420,7 @@ grpc_cc_library(
         "absl/time",
     ],
     deps = [
+        "grpc_authorization_base",
         "grpc_check",
         "sync",
         "//:gpr",
