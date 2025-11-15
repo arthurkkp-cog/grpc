@@ -1218,6 +1218,9 @@ _BUILD_EXTRA_METADATA = {
         "generate_plugin_registry": True,
     },
     "grpcpp_channelz": {"language": "c++", "build": "all"},
+    "grpcpp_admin": {"language": "c++", "build": "all"},
+    "grpcpp_csds": {"language": "c++", "build": "all"},
+    "grpcpp_orca_service": {"language": "c++", "build": "all"},
     "grpcpp_otel_plugin": {
         "language": "c++",
         "build": "plugin",
