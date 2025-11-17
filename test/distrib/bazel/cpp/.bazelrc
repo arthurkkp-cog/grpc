@@ -1,9 +1,9 @@
 # bazelrc file
 
-# Bazel 7 begins to enable module by default which breaks gRPC build.
-# Therefore, this option is disabled until gRPC works with bzlmod.
-common --enable_bzlmod=false
-common --enable_workspace=true
+# Bazel 7 begins to enable module by default and gRPC has now migrated to bzlmod.
+# Bzlmod is now enabled and workspace is disabled.
+common --enable_bzlmod=true
+common --enable_workspace=false
 
 build --cxxopt='-std=c++17'
 build --host_cxxopt='-std=c++17'
