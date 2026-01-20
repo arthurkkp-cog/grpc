@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM ruby:3.1-alpine
+FROM ruby:3.4.8-alpine
 
 # Our test infrastructure demands bash
 RUN apk update && apk add bash build-base
